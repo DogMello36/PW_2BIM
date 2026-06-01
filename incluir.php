@@ -14,7 +14,7 @@
         }
 
         .foto {
-            width: 150px;
+            width: 200px;
         }
     </style>
 </head>
@@ -74,12 +74,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <b>Valor: R$ </b><input type="number" step="0.01" name="valor"> <br><br>
             <input type="file" name="foto" id="imagemnova" accept="image/*"><br><br>
             <p>Pré-visualização:</p>
-            <img src="img/SemImagem.png" id="preview" class="img-fluid img-thumbnail shadow" alt="sem imagem"><br>
+            <img src="img/SemImagem.png" id="preview" class="img-fluid img-thumbnail shadow foto" alt="sem imagem"><br>
+            <Div class="pt-4 mb-4">
             <input type="submit" class="btn btn-secondary" value="Ok">&nbsp;&nbsp;
             <input type="reset" class="btn btn-dark" value="Limpar">&nbsp;&nbsp;
             <a href="index.php" class="btn btn-primary">Cancelar</a>
+            </Div>
         </form>
     </main>
+
+    <script>
+document.getElementById('imagemnova').addEventListener('change', function(event) {
+    const file = event.target.files[0]; // Pega o primeiro arquivo selecionado
+    const preview = document.getElementById('preview');
+
+    // Lê o arquivo e exibe no <img>
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        preview.src = e.target.result; // Define a imagem no src
+        preview.alt = file.name;       // Define o nome como alt
+    };
+    reader.readAsDataURL(file); // Converte para Base64
+});
+</script>
+
 </body>
 
 </html>

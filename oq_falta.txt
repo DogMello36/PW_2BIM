@@ -1,0 +1,3 @@
+-colocar filtro 
+-consulta
+-trocar os textos e melhorar o layout
